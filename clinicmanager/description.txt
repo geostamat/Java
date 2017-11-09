@@ -1,0 +1,2 @@
+A small program created to store beds, doctors and patients for clinic management. After beds and doctors have been added, when a patient is added he/she will be assigned to a bed, which will become unavailable until the patients is removed. 
+Initial design is made so that the program can be used with a database, although current implementation saves the data as java objects.
