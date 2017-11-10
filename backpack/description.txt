@@ -1,0 +1,3 @@
+Different solutions to the backpack problem.
+Weights can be read from file that contains one in each line.
+Solutions are checked due to errors because of double precision.

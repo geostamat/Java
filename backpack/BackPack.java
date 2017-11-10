@@ -206,10 +206,6 @@ public class BackPack {
     
     //method that runs the backpack function on every number in the array and finds unique only solutions
     public void findAllSolutions(double backpackSize){
-        // Run the garbage collector to clear whatever unused objects are still in memeory
-        runtime.gc();
-        // stores the free memory before the algorithm is run
-        long freeMemoryStart = runtime.freeMemory();
         //time point where the algorithm begins
         long startTime = System.currentTimeMillis();
         //cuurent time stored in nanoseconds
@@ -220,16 +216,10 @@ public class BackPack {
         for(int i = 0; i < weights.length; i++){
             backpack(backpackSize, i, solution);
         }
-        // difference in free memory at the end of the algorithm
-        long freeMemoryEnd = freeMemoryStart - runtime.freeMemory(); 
         //time point where algorithm ends in nanoseconds
         long totalTimeNano = System.nanoTime() - startTimeNano;
         //time point where the algorithm ends in miliseconds
         long totalTime = System.currentTimeMillis()-startTime;
-        // displays the difference in free Memory between before an after the algorithm execution
-        System.out.println("Memory used in bytes: " + (freeMemoryEnd) + " (usually not accurate due to unknown points of garbage collection execution)");
-        // estimation of memory usage n * ((a new ArrayList of doubles of average size n/2) * 8 bytes + (index, i) * 4 bytes + (remainderBackPack double)* 8 bytes) at the "peak" of the recursion
-        System.out.println("Estimated Memory Usage: " +  weights.length * ((((weights.length)/2.00)*8) + 2 * 4 + 8) + " bytes");
         //printout of the total times of the algorithm execution
         if(totalTimeNano > 10000000){
             System.out.println("Total time: " + (totalTime) + " miliseconds (" + totalTime/1000.00 + " seconds)");
@@ -342,10 +332,6 @@ public class BackPack {
     
     //method that runs the backpack function (which considers a + b diffrent than b + a) on every number in the array
     public void findAllCombinations(double backpackSize){
-        // Run the garbage collector to clear whatever unused objects are still in memeory
-        runtime.gc();
-        // stores the free memory before the algorithm is run
-        long freeMemoryStart = runtime.freeMemory();
         //time point where the algorithm begins in milliseconds
         long startTime = System.currentTimeMillis();
         //cuurent time stored in nanoseconds
@@ -360,16 +346,10 @@ public class BackPack {
             indexArray = fillBooleanArray(indexArray);
             backpack(backpackSize, i, solution, indexArray);
         }
-        //free memory at the end
-        long freeMemoryEnd = freeMemoryStart - runtime.freeMemory();
         //time point where algorithm ends in nanoseconds
         long totalTimeNano = System.nanoTime() - startTimeNano;
         //time point where the algorithm ends in milliseconds
         long totalTime = System.currentTimeMillis()-startTime;
-        // displays the difference in free Memory between before an after the algorithm execution
-        System.out.println("Memory used in bytes: " + (freeMemoryEnd) + " (usually not accurate due to unknown points of garbage collection execution)");
-        // estimation of memory usage n * ((a new ArrayList of doubles of average size n/2) * 8 bytes + (index, i) * 4 bytes) + (a new array of n booleans) * 2bytes + (remainderBackPackSize) * 8 bytes) at the "peak" of the recursion
-        System.out.println("Estimated Memory Usage: " +  weights.length * ((((weights.length)/2.00)*8) + 2*4 + weights.length*2 + 8) + " bytes");
         //printout of the total times of the algorithm execution
         if(totalTimeNano > 10000000){
             System.out.println("Total time: " + (totalTime) + " miliseconds (" + totalTime/1000.00 + " seconds)");
@@ -495,10 +475,6 @@ public class BackPack {
     
     //method that applies the above method on all the weights in the array
     public void oneSolution(double backpackSize){
-        // Run the garbage collector to clear whatever unused objects are still in memeory
-        runtime.gc();
-        // stores the free memory before the algorithm is run
-        long freeMemoryStart = runtime.freeMemory();
         //time point where the algorithm begins
         long startTime = System.currentTimeMillis();
         //cuurent time stored in nanoseconds
@@ -514,16 +490,10 @@ public class BackPack {
         }
         //the solution is displayed
         printSolution(solution);
-        //difference of free memory at the end
-        long freeMemoryEnd = freeMemoryStart - runtime.freeMemory();
         //time point where algorithm ends in nanoseconds
         long totalTimeNano = System.nanoTime() - startTimeNano;
         //time point where the algorithm ends
         long totalTime = System.currentTimeMillis()-startTime;
-        // displays the difference in free Memory between before an after the algorithm execution
-        System.out.println("Memory used in bytes: " + (freeMemoryEnd) + " (usually not accurate due to unknown points of garbage collection execution)");
-        // estimation of memory usage n * ((a new boolean) * 2 bytes + (an ArrayList of doubles with n elements at maximum) * 8 bytes + (int index, i) * 4 bytes + (remainderBP size double) * 8 bytes) at the "peak" of the recursion
-        System.out.println("Estimated Maximum Memory Usage: " +  weights.length * (2 + 8 + 2*4 + 8) + " bytes");
         //printout of the total times of the algorithm execution
         if(totalTimeNano > 10000000){
             System.out.println("Total time: " + (totalTime) + " miliseconds (" + totalTime/1000.00 + " seconds)");
@@ -587,10 +557,6 @@ public class BackPack {
     
     //method that runs the above improved backpack function (which considers a + b diffrent than b + a) on every number in the array
     public void findAllCombinationsImproved(double backpackSize){
-        // Run the garbage collector to clear whatever unused objects are still in memeory
-        runtime.gc();
-        // stores the free memory before the algorithm is run
-        long freeMemoryStart = runtime.freeMemory();
         //time point where the algorithm begins
         long startTime = System.currentTimeMillis();
         //cuurent time stored in nanoseconds
@@ -606,15 +572,9 @@ public class BackPack {
             backpackImproved(backpackSize, i, solution, indexArray);
         }
         // difference of free memory at the end
-        long freeMemoryEnd = freeMemoryStart - runtime.freeMemory();
-        //time point where algorithm ends in nanoseconds
         long totalTimeNano = System.nanoTime() - startTimeNano;
         //time point where the algorithm ends in miliseconds
         long totalTime = System.currentTimeMillis()-startTime;
-        // displays the difference in free Memory between before an after the algorithm execution
-        System.out.println("Memory used in bytes: " + (freeMemoryEnd) + " (usually not accurate due to unknown points of garbage collection execution)");
-        // estimation of memory usage n * ((an ArrayList of doubles with n elements at maximum) * 8 + (an array of n booleans)*2 + (int index, i) * 4 + (remainder BP size double) * 8) at the "peak" of the recursion
-        System.out.println("Estimated Maximum Memory Usage: " +  weights.length * (8 + 2 + 2 * 4 + 8) + " bytes");
         //printout of the total times of the algorithm execution
         if(totalTimeNano > 10000000){
             System.out.println("Total time: " + (totalTime) + " miliseconds (" + totalTime/1000.00 + " seconds)");
@@ -672,10 +632,6 @@ public class BackPack {
     
     //method that runs the above backpackImproved function on every number in the array and finds unique only solutions
     public void findAllSolutionsImproved(double backpackSize){
-        // Run the garbage collector to clear whatever unused objects are still in memeory
-        runtime.gc();
-        // stores the free memory before the algorithm is run
-        long freeMemoryStart = runtime.freeMemory();
         //time point where the algorithm begins
         long startTime = System.currentTimeMillis();
         //cuurent time stored in nanoseconds
@@ -686,16 +642,10 @@ public class BackPack {
         for(int i = 0; i < weights.length; i++){
             backpackImproved(backpackSize, i, solution);
         }
-        //difference of free memory at the end of the algorithm
-        long freeMemoryEnd = freeMemoryStart - runtime.freeMemory();
         //time point where algorithm ends in nanoseconds
         long totalTimeNano = System.nanoTime() - startTimeNano;
         //time point where the algorithm ends in miliseconds
         long totalTime = System.currentTimeMillis()-startTime;
-        // displays the difference in free Memory between before an after the algorithm execution
-        System.out.println("Memory used in bytes: " + (freeMemoryEnd) + " (usually not accurate due to unknown points of garbage collection execution)");
-        // estimation of memory usage n * ((an ArrayList of doubles with n elements at maximum) * 8 + (int index, i) * 4 + (remainderBP size) * 8) at the "peak" of the recursion
-        System.out.println("Estimated Maximum Memory Usage: " +  weights.length * (8 + 2*4 + 8) + " bytes");
         //printout of the total times of the algorithm execution
         if(totalTimeNano > 10000000){
             System.out.println("Total time: " + (totalTime) + " miliseconds (" + totalTime/1000.00 + " seconds)");
