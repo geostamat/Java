@@ -1,0 +1,1 @@
+Program reads files that contain one double and a symbol in each line seperated by a single space (such as english.txt)
